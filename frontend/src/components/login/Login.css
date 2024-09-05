@@ -1,0 +1,46 @@
+.login {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.login h2 {
+    font-size: 28px;
+    text-align: center;
+}
+
+
+.login input,
+.login button {
+    height: 100%;
+    width: 100%;
+    border: none;
+    font-size: 16px;
+    font-weight: 400;
+    border-radius: 6px;
+}
+
+.login input {  
+    padding: 0 15px;
+    border: 1px solid #CACA;
+}
+
+.form-link {
+    text-align: center;
+    margin-top: 10px;
+}
+
+.form-link span,
+.form-link a  {
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.login a {
+    text-decoration: none;
+}
+
+.login a:hover { 
+    text-decoration: underline;
+}
