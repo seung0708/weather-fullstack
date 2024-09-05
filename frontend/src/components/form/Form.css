@@ -1,18 +1,32 @@
-.login {
+#form {
+    max-width: 430px;
+    width: 100%;
+    padding: 30px;
+    border-radius: 6px;
+}
+
+form .field {
+    height: 50px;
+    width: 100%;
+    margin-top: 20px;
+}
+
+
+.form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-.login h2 {
+.form h2 {
     font-size: 28px;
     text-align: center;
 }
 
 
-.login input,
-.login button {
+.form input,
+.form button {
     height: 100%;
     width: 100%;
     border: none;
@@ -21,7 +35,7 @@
     border-radius: 6px;
 }
 
-.login input {  
+.form input {  
     padding: 0 15px;
     border: 1px solid #CACA;
 }
@@ -37,10 +51,10 @@
     font-weight: 400;
 }
 
-.login a {
+.form a {
     text-decoration: none;
 }
 
-.login a:hover { 
+.form a:hover { 
     text-decoration: underline;
 }
