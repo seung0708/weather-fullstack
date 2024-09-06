@@ -1,0 +1,8 @@
+#footer {
+    height: 50px;
+    overflow-y: hidden;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
+}
