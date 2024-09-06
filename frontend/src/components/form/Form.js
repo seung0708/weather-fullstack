@@ -14,6 +14,9 @@ const Form = ({isSignup}) => {
                 <input type='text' placeholder='Last Name' /> 
             </div>
             <div className='field input-field'>
+                <input type='text' placeholder='City' /> 
+            </div>
+            <div className='field input-field'>
                 <input type='email' placeholder='Email' className='input' />
             </div>
             <div className='field input-field'>

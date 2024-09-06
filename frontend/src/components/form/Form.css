@@ -1,8 +1,11 @@
 #form {
-    max-width: 430px;
+    margin-top: 70px;
+    max-width: 580px;
     width: 100%;
     padding: 30px;
     border-radius: 6px;
+    border: 1px solid black;
+    text-align: center;
 }
 
 form .field {
@@ -57,4 +60,17 @@ form .field {
 
 .form a:hover { 
     text-decoration: underline;
+}
+
+@media screen and (max-width: 760px) {
+    #form {
+        max-width: 380px;
+    }
+    .form input, .form button {
+        height: 80%;
+        width: 90%;
+        font-size: 14px;
+        font-weight: 400;
+        border-radius: 6px;
+    }
 }

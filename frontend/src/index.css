@@ -20,6 +20,10 @@ h6 {
     text-transform: uppercase;
 }
 
+h2 {
+  font-size: 38px;
+}
+
 p, a{
     font-family: sans-serif;
 }
