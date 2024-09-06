@@ -11,8 +11,8 @@ const Header = () => {
             <NavLink to='/'>LOGO</NavLink></div>
         <nav className='navbar'>
             <ul className='nav-links'>
-                <li><NavLink to='/register'>Register</NavLink></li>
-                <li><NavLink to='/login'>Log In</NavLink></li>
+                <li><NavLink to='/signin'>Sign In</NavLink></li>
+                <li><NavLink to='/signup'>Sign Up</NavLink></li>
             </ul>
         </nav>
     </header>
