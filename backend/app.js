@@ -16,6 +16,9 @@ const PORT = process.env.PORT;
 const weatherRoutes = require('./routes/Weather');
 const userRoutes = require('./routes/users')
 
+
+
+
 const app = express(); 
 app.use(express.json());
 app.use(cors(corsOptions));

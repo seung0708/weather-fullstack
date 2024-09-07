@@ -2,7 +2,7 @@ import {API_ENDPOINT} from './index';
 
 export const signin = async(email, password) => {
     try {
-        const response = await fetch(`${API_ENDPOINT}/users`, {
+        const response = await fetch(`${API_ENDPOINT}/users/signin`, {
             method: 'POST',
             body: JSON.stringify({
                 email,
@@ -23,6 +23,23 @@ export const signin = async(email, password) => {
     }
 }
 
-export const signup = async() => {
-    
+export const signup = async(email, password, city) => {
+    try {
+        const response = await fetch(`${API_ENDPOINT}/users/signup`, {
+            method: 'POST',
+            body: JSON.stringify({
+                email,
+                password,
+                city
+            }),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
+        const data = await response.json();
+        console.log(data)
+    } catch(err) {
+        console.log(err)
+    }
+
 }

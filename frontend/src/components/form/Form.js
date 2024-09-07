@@ -1,10 +1,10 @@
 import {useState} from 'react';
 import './Form.css';
 
-const Form = ({isSignup, onHandleSignin, email, password, message, setPassword, setEmail}) => {
+const Form = ({isSignup, onHandleSignin, handleSubmit, email, password, message, setPassword, setEmail}) => {
 
   return (
-    <form className='form' onSubmit={onHandleSignin}>
+    <form className='form' onSubmit={handleSubmit}>
         <div className='field input-field'>
             <input 
                 type='email' 
@@ -25,11 +25,11 @@ const Form = ({isSignup, onHandleSignin, email, password, message, setPassword, 
         {isSignup && (
             <>
             <div className='field input-field'>
-                <input type='text' placeholder='City' className='city' />
-            </div>
-            <div className='field input-field'>
                 <input type='password' placeholder='Confirm Password' className='password' />
                 <i className='bx bx-hide eye-icon'></i>
+            </div>
+            <div className='field input-field'>
+                <input type='text' placeholder='City' className='city' />
             </div>
             </>
         )}
