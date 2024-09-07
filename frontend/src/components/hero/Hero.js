@@ -1,7 +1,17 @@
-import React from 'react'
+import React, {useEffect,useState} from 'react'
+import { getWeather } from '../../api/weather'
 import './Hero.css'
 import weatherImg from './weatherapp.jpg'
 const Hero = () => {
+  const[weather, setWeather] = useState('')
+  useEffect(() => {
+    async function fetchData() {
+      const weatherData = await getWeather();
+      setWeather(weatherData)
+    }
+    //fetchData();
+  },[])
+  
   return (
     <section id='hero' className='hero container'>
       <div>
@@ -10,6 +20,7 @@ const Hero = () => {
       </div>
       <div>
         <img src={weatherImg} />
+        {weather}
       </div>
     </section>
   )
