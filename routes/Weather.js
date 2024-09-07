@@ -1,3 +1,17 @@
+/*
+
+When a user signs up, 
+    I would have to call the getLocationKey, to get the weather information 
+    once I get weather information from the inputted city, I save that information into the database to be viewed in the user's profile. 
+    1. User A signs up
+        1a. User A lives in Los Angeles, 
+        1b. within the signup, I getWeather api to get the weather information for Los Angeles, 
+        1c. save the user info and weather info into their respective tables. 
+    2. Redirect to profile
+        2a. Display the user's city's weather by pulling it up from the database. 
+
+*/
+
 require('dotenv').config();
 const express = require('express');
 const router = express.Router();
