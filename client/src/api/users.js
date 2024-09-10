@@ -15,9 +15,10 @@ export const signin = async(email, password) => {
         const result = await response.json();
         console.log(result)
         if(!response.ok) {
-            console.log(result.message || 'Login failed');
+            console.log(result.message || 'Signin failed');
         } else {
-            console.log(result.message || 'Login successful')
+            console.log(result.message || 'Signin successful')
+            return result;
         }
 
     } catch(error) {
@@ -40,6 +41,12 @@ export const signup = async(email, password, city) => {
         })
         console.log(response)
         const result = await response.json();
+        if(!response.ok) {
+            console.log(result.message || 'Sign up failed');
+        } else {
+            console.log(result.message || 'Sign up successful')
+            return result;
+        }
         console.log(result)
     } catch(err) {
         console.log(err)

@@ -1,10 +1,23 @@
 import {useState} from 'react';
 import './Form.css';
 
-const Form = ({isSignup, onHandleSignin, onHandleSignup , email, password, city, setPassword, setEmail, setCity}) => {
+const Form = ({action, onSubmit}) => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [city, setCity] = useState('');
+
+    const handleSubmit = (e) => {
+        e.preventDefault(); 
+        if(action === "Sign up") {
+            onSubmit(email, password, city)
+        } 
+        if(action === 'Sign in') {
+            onSubmit(email,password);
+        }
+    } 
 
   return (
-    <form className='form' onSubmit={(isSignup ? onHandleSignup : onHandleSignin)}>
+    <form className='form' onSubmit={handleSubmit}>
         <div className='field input-field'>
             <input 
                 type='email' 
@@ -20,9 +33,8 @@ const Form = ({isSignup, onHandleSignin, onHandleSignup , email, password, city,
                     className='password'  
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}/>
-            <i className='bx bx-hide eye-icon'></i>
             </div>
-        {isSignup && (
+        {action === 'Sign up' && (
             <>
             <div className='field input-field'>
                 <input type='password' placeholder='Confirm Password' className='password' />
@@ -38,14 +50,14 @@ const Form = ({isSignup, onHandleSignin, onHandleSignup , email, password, city,
             </div>
             </>
         )}
-        {isSignup || (
+        {action === 'Sign in' && (
             <>
             <div className='form-link'>
                 <a href='#' className='forgot-password'>Forgot Password?</a>
             </div>
             </>
         )}
-        <div className='field button-field'><button type='submit'>{isSignup ? "Sign Up" : "Sign In"}</button>
+        <div className='field button-field'><button type='submit'>{action === "Sign up" ? "Sign Up" : "Sign in"}</button>
          </div>
   </form>
   )

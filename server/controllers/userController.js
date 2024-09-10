@@ -1,4 +1,4 @@
-const { createUser} = require('../models/userModel');
+const { createUser, findUserById} = require('../models/userModel');
 const passport = require('passport');
 
 // Register a new user
@@ -6,12 +6,18 @@ const signup = async (req, res) => {
   const { email, password, city} = req.body;
   try {
     const user = await createUser(email, password, city);
-    res.status(201).json({ message: 'User registered', user: user.rows[0] });
+    if(user) {
+      res.status(201).json({ 
+        message: 'User registered', 
+        user: user.rows[0],
+        redirectUrl: '/profile'
+      });
+    }
   } catch (err) {
     res.status(500).json({ error: 'Error registering user' });
     console.log(err)
   }
-};
+}; 
 
 // Log in a user
 const signin = (req, res, next) => {
@@ -35,5 +41,9 @@ const signout = (req, res) => {
     res.status(200).json({ message: 'Logged out successfully' });
   });
 };
+
+const profile = (req, res) => {
+  
+}
 
 module.exports = { signup, signin, signout };
