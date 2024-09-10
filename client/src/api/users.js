@@ -12,14 +12,16 @@ export const signin = async(email, password) => {
                 'Content-Type': 'application/json'
             }
         })
-        const data = await response.json();
+        const result = await response.json();
+        console.log(result)
         if(!response.ok) {
-            throw new Error(data.message);
+            console.log(result.message || 'Login failed');
+        } else {
+            console.log(result.message || 'Login successful')
         }
 
-        return {success: true, message: data.message};
     } catch(error) {
-        return {success: false, message: error.message};
+        console.error(error)
     }
 }
 
@@ -36,8 +38,9 @@ export const signup = async(email, password, city) => {
                 'Content-Type': 'application/json'
             }
         })
-        const data = await response.json();
-        console.log(data)
+        console.log(response)
+        const result = await response.json();
+        console.log(result)
     } catch(err) {
         console.log(err)
     }

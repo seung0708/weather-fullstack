@@ -10,17 +10,10 @@ const SignIn = () => {
   
   const handleSignin = async(e) => {
     e.preventDefault();
+    console.log('Form submitted')
     const result = await signin(email, password);
     console.log(result)
-    if(result.success) {
-      setMessage(result.message)
-      setEmail(result.email);
-      setPassword(result.password)
-    } else {
-      setMessage(result.message)
-    }
   }
-
   return (
     <section id='form' className='container'>
         <h2 className='signin_header'>Sign In</h2>

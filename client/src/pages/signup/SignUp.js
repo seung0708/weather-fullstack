@@ -8,10 +8,11 @@ const SignUp = () => {
   const [city, setCity] = useState('')
   const [message, setMessage] = useState('')
 
-  const handleSubmit = async(e) => {
+  const handleSignup = async(e) => {
     e.preventDefault();
     const result = await signup(email, password, city)
-    if(result.success) {
+    console.log(result);
+    if(result) {
       setMessage(result.message)
       setEmail(result.email);
       setPassword(result.password)
@@ -26,7 +27,7 @@ const SignUp = () => {
       <h2 className='signup_header'>Sign Up</h2>
       <Form 
         isSignup={true}
-        onSubmit={handleSubmit}
+        onHandleSignup={handleSignup}
         email={email}
         password={password}
         setEmail={setEmail}

@@ -1,10 +1,10 @@
 import {useState} from 'react';
 import './Form.css';
 
-const Form = ({isSignup, onHandleSignin, handleSubmit, email, password, message, setPassword, setEmail}) => {
+const Form = ({isSignup, onHandleSignin, onHandleSignup , email, password, city, setPassword, setEmail, setCity}) => {
 
   return (
-    <form className='form' onSubmit={handleSubmit}>
+    <form className='form' onSubmit={(isSignup ? onHandleSignup : onHandleSignin)}>
         <div className='field input-field'>
             <input 
                 type='email' 
@@ -29,7 +29,12 @@ const Form = ({isSignup, onHandleSignin, handleSubmit, email, password, message,
                 <i className='bx bx-hide eye-icon'></i>
             </div>
             <div className='field input-field'>
-                <input type='text' placeholder='City' className='city' />
+                <input 
+                    type='text' 
+                    placeholder='City' 
+                    className='city'
+                    value={city}
+                    onChange={e => setCity(e.target.value)} />
             </div>
             </>
         )}
@@ -42,7 +47,6 @@ const Form = ({isSignup, onHandleSignin, handleSubmit, email, password, message,
         )}
         <div className='field button-field'><button type='submit'>{isSignup ? "Sign Up" : "Sign In"}</button>
          </div>
-         <p>{message}</p>
   </form>
   )
 }
