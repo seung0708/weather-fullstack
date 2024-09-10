@@ -7,6 +7,7 @@ const PgSession = require('connect-pg-simple')(session);
 const pool = require('./database');
 const cors = require('cors');
 const userRoutes = require('./routes/users');
+const weatherRoutes = require('./routes/weather')
 const initializePassport = require('./passport-config');
 
 const PORT = process.env.PORT || 5000;
@@ -40,6 +41,7 @@ app.use(passport.session());
 
 // Routes
 app.use('/users', userRoutes);
+app.use('/weather', weatherRoutes);
 
 app.get('/', (req, res) => {
   res.send('Backend is working')

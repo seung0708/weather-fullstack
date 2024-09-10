@@ -1,26 +1,34 @@
 import React, {useEffect,useState} from 'react'
-import { getWeather } from '../../api/weather'
+import { get5DayForecast } from '../../api/weather'
 import './Hero.css'
 import weatherImg from './weatherapp.jpg'
 const Hero = () => {
-  const[weather, setWeather] = useState('')
+  const[weather, setWeather] = useState([])
+  const [city, setCity] = useState('Los Angeles, CA')
+
   useEffect(() => {
     async function fetchData() {
-      const weatherData = await getWeather();
-      setWeather(weatherData)
+      console.log('fetchdata is being called')
+      try {
+        const data = await get5DayForecast(city);
+        console.log(data)
+        setWeather(data)
+      } catch(error) {
+        console.error(error)
+      }
+      
     }
-    //fetchData();
-  },[])
+    fetchData();
+  },[city])
   
   return (
     <section id='hero' className='hero container'>
       <div>
+        {}
         <h1>Get Real Time Weather Forecasts</h1>
         <p>up to 5 days of any location</p>
       </div>
       <div>
-        <img src={weatherImg} />
-        {weather}
       </div>
     </section>
   )
