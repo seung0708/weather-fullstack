@@ -8,6 +8,7 @@ const pool = require('./database');
 const cors = require('cors');
 const userRoutes = require('./routes/users');
 const weatherRoutes = require('./routes/weather')
+const authRoutes = require('./routes/auth')
 const initializePassport = require('./passport-config');
 
 const PORT = process.env.PORT || 5000;
@@ -19,6 +20,7 @@ app.use(bodyParser.json()); // Parses JSON body
 app.use(express.urlencoded({ extended: true })); // Parses URL-encoded body
 app.use(express.json());
 app.use(cors({
+  origin: 'http://localhost:3000',
   credentials: true
 }));
 
@@ -42,6 +44,7 @@ app.use(passport.session());
 // Routes
 app.use('/users', userRoutes);
 app.use('/weather', weatherRoutes);
+app.use('/auth', authRoutes);
 
 app.get('/', (req, res) => {
   res.send('Backend is working')

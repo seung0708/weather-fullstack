@@ -1,16 +1,18 @@
 import {useEffect, useState} from 'react';
 import './App.css';
-import {Routes, Route} from 'react-router-dom';
+import {Routes, Route, useNavigate} from 'react-router-dom';
 import Home from './pages/home';
 import Header from './components/header/Header';
 import SignIn from './pages/signin/SignIn';
 import SignUp from './pages/signup/SignUp'
 import Footer from './pages/footer/Footer'
-import { signin, signup } from './api/users';
+import Profile from './pages/profile/profile';
+import { signin, signup } from './api/auth';
 
 function App() {
   const [user, setUser] = useState(null);
-  
+  const navigate = useNavigate();
+
   useEffect(() => {
     const storedUser = localStorage.getItem('user');
     if(storedUser) {
@@ -24,6 +26,7 @@ function App() {
       if(result) {
         setUser(result);
         localStorage.setItem('user', JSON.stringify(result))
+        navigate('/profile')
       }
     } catch(error) {
       console.error(error)
@@ -36,6 +39,7 @@ function App() {
       if(result) {
         setUser(result);
         localStorage.setItem('user', JSON.stringify(result))
+        navigate('/profile')
       }
     } catch(error) {
       console.error(error);
@@ -49,14 +53,14 @@ function App() {
 
   return (
     <>
-    {console.log(user)}
       <Header user={user} signoutUser={signoutUser} />
       <Routes>
         <Route path='/' element={<Home user={user} />} />
+        <Route path='/profile' element={<Profile user={user} />} />
         <Route 
           path='/signup' 
           element={
-            <SignUp />
+            <SignUp signinUser={signinUser} />
           } />
         <Route 
           path='/signin' 

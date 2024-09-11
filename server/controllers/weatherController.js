@@ -1,13 +1,13 @@
 require('dotenv').config();
 const pool = require('../database');
-const {findByUserI} = require('./userModel');
+const {findByUserI} = require('../models/userModel');
 const apikey = process.env.ACCWEATHER_KEY
 
-const getDailyFive = async (req, res) => {
+const getDailyFive = async (req, res) => { 
     const {city} = req.query; 
     try {
         const locationKey = await getLocationKey(city);
-        const fiveDayForecast = await getDailyFive(locationKey);
+        const fiveDayForecast = await get5DayForecastData(locationKey);
         res.json(fiveDayForecast)
     } catch(error) {
         res.status(500).json({error: error.message});

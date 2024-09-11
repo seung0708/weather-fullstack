@@ -18,8 +18,8 @@ async function findUserByEmail(email) {
 
 // Function to find a user by ID
 async function findUserById(id) {
-  const result = await pool.query('SELECT * FROM users WHERE id = $1', [id]);
-  return result.rows[0];
+  return await pool.query('SELECT * FROM users WHERE id = $1', [id]);
+  
 }
 
 

@@ -28,8 +28,11 @@ const signin = (req, res, next) => {
     if (!user) return res.status(401).json({ message: 'Login failed' });
   
     req.logIn(user, (err) => {
-      if (err) return next(err);
-      res.status(200).json({ message: 'Logged in successfully', user });
+      if (!err) {
+        res.status(200).json({ message: 'Logged in successfully', user, redirectUrl: '/profile' });
+      } else {
+        return next(err);
+      }      
     });
   })(req, res, next);
 };

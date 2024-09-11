@@ -14,3 +14,21 @@ export const get5DayForecast = async (city) => {
         throw error;
     }
 }
+
+export const getCurrentConditions = async (user) => {
+    console.log(user.id)
+    try {
+        const response = await fetch(`${API_ENDPOINT}/users/profile/${user.id}`, {
+            method:'GET',
+            credentials: 'include'
+        })
+        if (!response.ok) {
+            throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+
+    } catch (error) {
+        console.error('Error fetching current conditions data:', error);
+        throw error;
+    }
+}

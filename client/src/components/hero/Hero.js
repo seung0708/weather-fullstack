@@ -1,7 +1,7 @@
 import React, {useEffect,useState} from 'react'
 import { get5DayForecast } from '../../api/weather'
 import './Hero.css'
-import weatherImg from './weatherapp.jpg'
+ 
 const Hero = () => {
   const[weather, setWeather] = useState([])
   const [city, setCity] = useState('Los Angeles, CA')
@@ -18,7 +18,7 @@ const Hero = () => {
       }
       
     }
-    fetchData();
+    //fetchData();
   },[city])
   
   return (

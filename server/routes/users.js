@@ -1,6 +1,8 @@
 const express = require('express');
+const passport = require('passport');
 const router = express.Router();
 const {showUserProfile} = require('../controllers/userController');
-const { authenticate } = require('passport');
 
-router.get('/profile', showUserProfile)
+router.get('/profile/:id', passport.authenticate('jwt', { session: false }), showUserProfile);
+
+module.exports = router;

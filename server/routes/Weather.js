@@ -1,9 +1,9 @@
 require('dotenv').config();
 const express = require('express');
 const router = express.Router();
-const weatherController = require('../controllers/weatherController.js');
+const {getDailyFive} = require('../controllers/weatherController.js');
 
-router.get('/5day', weatherController.get5DayForecastData);
+router.get('/5day', getDailyFive);
 
 
 module.exports = router;
