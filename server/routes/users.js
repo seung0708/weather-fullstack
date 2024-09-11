@@ -1,17 +1,6 @@
 const express = require('express');
-const userController = require('../controllers/userController');
 const router = express.Router();
+const {showUserProfile} = require('../controllers/userController');
+const { authenticate } = require('passport');
 
-// Register
-router.post('/signup', userController.signup);
-
-// Login
-router.post('/signin', userController.signin);
-
-// Logout
-router.post('/signout', userController.signout);
-
-//Profile
-
-
-module.exports = router;
+router.get('/profile', showUserProfile)

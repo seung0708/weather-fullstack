@@ -1,49 +1,21 @@
-const { createUser, findUserById} = require('../models/userModel');
-const passport = require('passport');
+const {findUserById} = require('../models/userModel');
+const {getCurrentWeather} = require('../controllers/weatherController');
 
-// Register a new user
-const signup = async (req, res) => {
-  const { email, password, city} = req.body;
+const showUserProfile = async (req, res) => {
+  const userId = req.user.id;
+
   try {
-    const user = await createUser(email, password, city);
+    const user = await findUserById(userId);
     if(user) {
-      res.status(201).json({ 
-        message: 'User registered', 
-        user: user.rows[0],
-        redirectUrl: '/profile'
-      });
+      const weatherData = await getCurrentWeather(user.city);
+      res.json({user, weather: weatherData});
+    } else {
+      res.status(404).json({error: 'User not found'});
     }
-  } catch (err) {
-    res.status(500).json({ error: 'Error registering user' });
-    console.log(err)
+  } catch(error) {
+    res.status(500).json({error: 'Server error'});
   }
-}; 
-
-// Log in a user
-const signin = (req, res, next) => {
-  console.log(req.body);
-  passport.authenticate('local', (err, user, info) => {
-    console.log(info)
-    if (err) return next(err);
-    if (!user) return res.status(401).json({ message: 'Login failed' });
-  
-    req.logIn(user, (err) => {
-      if (err) return next(err);
-      res.status(200).json({ message: 'Logged in successfully', user });
-    });
-  })(req, res, next);
-};
-
-// Log out a user
-const signout = (req, res) => {
-  req.logout((err) => {
-    if (err) return res.status(500).json({ error: 'Error logging out' });
-    res.status(200).json({ message: 'Logged out successfully' });
-  });
-};
-
-const profile = (req, res) => {
-  
 }
 
-module.exports = { signup, signin, signout };
+
+module.exports = { showUserProfile };
