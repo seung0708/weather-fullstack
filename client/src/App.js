@@ -26,7 +26,7 @@ function App() {
       if(result) {
         setUser(result);
         localStorage.setItem('user', JSON.stringify(result))
-        navigate('/profile')
+        navigate(`/users/${result.user.id}`)
       }
     } catch(error) {
       console.error(error)
@@ -39,7 +39,7 @@ function App() {
       if(result) {
         setUser(result);
         localStorage.setItem('user', JSON.stringify(result))
-        navigate('/profile')
+        navigate(`/users/${result.user.id}`)
       }
     } catch(error) {
       console.error(error);
@@ -56,7 +56,7 @@ function App() {
       <Header user={user} signoutUser={signoutUser} />
       <Routes>
         <Route path='/' element={<Home user={user} />} />
-        <Route path='/profile' element={<Profile user={user} />} />
+        <Route path='/users/:id' element={<Profile user={user} />} />
         <Route 
           path='/signup' 
           element={

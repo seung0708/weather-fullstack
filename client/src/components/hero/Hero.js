@@ -18,7 +18,7 @@ const Hero = () => {
       }
       
     }
-    fetchData();
+    //fetchData();
   },[city])
   
   return (

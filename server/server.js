@@ -19,10 +19,7 @@ const app = express();
 app.use(bodyParser.json()); // Parses JSON body
 app.use(express.urlencoded({ extended: true })); // Parses URL-encoded body
 app.use(express.json());
-app.use(cors({
-  origin: 'http://localhost:3000',
-  credentials: true
-}));
+app.use(cors());
 
 // Session configuration
 app.use(session({
@@ -45,10 +42,6 @@ app.use(passport.session());
 app.use('/users', userRoutes);
 app.use('/weather', weatherRoutes);
 app.use('/auth', authRoutes);
-
-app.get('/', (req, res) => {
-  res.send('Backend is working')
-})
 
 // Start the server
 app.listen(PORT,() => console.log(`Server running on http://localhost:${PORT}`));

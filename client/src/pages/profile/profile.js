@@ -1,23 +1,35 @@
-import React, {useEffect} from 'react'
+import React, {useEffect, useState} from 'react'
 import { getCurrentConditions } from '../../api/weather';
+import { getUserById } from '../../api/users';
 
 const Profile = ({user}) => {
+  const [weather, setWeather] = useState(null);
   let signedInUser
   if(user) {
     signedInUser = user.user;
   }
   
   useEffect(() => {
-    async function fetchData() {
-      try {
-        const data = await getCurrentConditions(signedInUser);
-        console.log(data)
-      } catch(error) {
-        console.log(error)
-      }
+    if(signedInUser && signedInUser.id) {
+      const fetchData = async () => {
+        try {
+            const userData = await getUserById(signedInUser.id);
+            const city = userData.city
+            if (city) {
+                const weatherData = await getCurrentConditions(city);
+                setWeather(weatherData);
+            } else {
+                throw new Error('City not found for user');
+            }
+        } catch (error) {
+            console.log(error)
+        }
+      };
+      fetchData();
     }
-    //fetchData()
-  },[])
+  },[signedInUser])
+
+  const {weather: weatherArray, main, wind} = weather; 
 
   return (
     <div id='profile' className='container'>

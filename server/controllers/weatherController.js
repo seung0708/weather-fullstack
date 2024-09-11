@@ -15,22 +15,19 @@ const getDailyFive = async (req, res) => {
 }
 
 const getCurrentWeather = async(req, res) => {
-    const {city} = req.query;
+    const city = req.query;
     try {
-        const locationKey = await getLocationKey(city);
-        const currentConditions = await getCurrentConditionsData(locationKey);
-        res.json(fiveDayForecast);
+        const weatherData = await getCurrentConditionsData(city);
+        res.json(weatherData);
     } catch(error) {
-        res.status(500).json({error: error.message});
+        console.error(error)
     }
 }
 
 const getGeoLocations = async(city) => {
-    //city = 'Los Angeles'
     try {
         const response = await fetch(`${baseUrl}/geo/1.0/direct?q=${city}&limit=5&appid=${apikey}`);
         const data = await response.json();
-        
         return [data[0].lat, data[0].lon]
     } catch (error) {
         console.error('Error fetching 5-day forecast data:', error);
@@ -42,6 +39,7 @@ const getGeoLocations = async(city) => {
 const get5DayForecastData = async (city) => {
     try {
         const latLon = await getGeoLocations(city);
+       // console.log('get5day', latLon)
         const response = await fetch (`${baseUrl}/data/2.5/forecast?lat=${latLon[0]}&lon=${latLon[1]}&appid=${apikey}&units=imperial`);
         const data = await response.json();
         const groupedData = data.list.reduce((acc, item) => {
@@ -63,13 +61,14 @@ const get5DayForecastData = async (city) => {
     } catch(error) {
         console.log(error);
     }
-}
+} 
 
-const getCurrentConditionsData = async (locationKey) => {
+const getCurrentConditionsData = async (city) => {
     try {
-         const response = await fetch(`http://dataservice.accuweather.com/currentconditions/v1/${locationKey}?apikey=${apikey}`)
-
+        const latLon = await getGeoLocations(city.city);
+        const response = await fetch(`${baseUrl}/data/2.5/weather?lat=${latLon[0]}&lon=${latLon[1]}&appid=${apikey}`)
         const data = await response.json();
+        console.log(data)
         if(data) {
             return data 
         }
