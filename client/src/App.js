@@ -68,7 +68,6 @@ function App() {
             <SignIn signinUser={signinUser} />
           } />
       </Routes>
-      <Footer />
     </>
   );
 }

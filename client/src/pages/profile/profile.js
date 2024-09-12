@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react'
+import './Profile.css'
 import { getCurrentConditions } from '../../api/weather';
 import { getUserById } from '../../api/users';
 
 const Profile = ({user}) => {
-  const [weather, setWeather] = useState(null);
+  const [weatherData, setWeather] = useState(null);
   let signedInUser
   if(user) {
     signedInUser = user.user;
@@ -28,18 +29,39 @@ const Profile = ({user}) => {
       fetchData();
     }
   },[signedInUser])
+  
+  if(!weatherData) {
+    return <div>Loading weather data....</div>
+  }
 
-  const {weather: weatherArray, main, wind} = weather; 
+  const {weather, main, wind} = weatherData; 
 
   return (
-    <div id='profile' className='container'>
-      <h2>Current conditions for Los Angeles, CA</h2>
-      <div>
-        <p>Temp: 75 Degres</p>
-        <p>Sunny</p>
-        <p>0% Chance of Rain</p>
+   <section style={{backgroundColor: '#f5f6f7;'}}>
+    <div class="container">
+      <div class="row center-content">
+        <div class="column">
+        {console.log(weather, main, wind)}
+          <div class="card">
+            <div class="image-container">
+              <img src="https://mdbgo.io/ascensus/mdb-advanced/img/clear.gif"
+                class="card-img" alt="weather" />
+              <div class="mask"></div>
+            </div>
+
+            <div class="card-img-overlay">
+              <h4 class="mb-0">Los Angeles, CA</h4>
+              <p class="display-2 my-3">{main.temp}</p>
+              <p class="mb-2">Feels Like: <strong>{main.feels_like}</strong></p>
+              <h5>{weather[0].main}</h5>
+            </div>
+          </div>
+  
+        </div>
       </div>
     </div>
+  </section>
+  
   )
 }
 

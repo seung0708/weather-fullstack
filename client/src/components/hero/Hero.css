@@ -1,7 +1,104 @@
-#hero {
+/* Full-height section */
+.full-height {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Container with padding */
+.container {
+  padding: 2rem;
+}
+
+/* Center content */
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Column setup */
+.column {
+  width: 100%;
+  max-width: 600px;
+}
+
+.column-small {
+  width: 16.6667%;
+  text-align: center;
+}
+
+.column-medium {
+  width: 20%;
+  text-align: center;
+}
+
+.column-large {
+  width: 50%;
+}
+
+/* Card styling */
+.card {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+}
+
+/* Card header and body */
+.card-header {
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.card-body {
+  padding: 1.5rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.forecast-section {
+  padding: 1.5rem;
+}
+
+/* Text alignment and size */
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.heading {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.temperature {
+  font-size: 4rem;
+}
+
+/* Row setup */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Small separators between text */
+.separator {
+  margin: 0 0.5rem;
+  color: #ddd;
+}
+
+/* Images */
 img {
-    width: 500px;
-    border-radius: 20px;
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
 }
