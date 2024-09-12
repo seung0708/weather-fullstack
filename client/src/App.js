@@ -6,7 +6,7 @@ import Header from './components/header/Header';
 import SignIn from './pages/signin/SignIn';
 import SignUp from './pages/signup/SignUp'
 import Footer from './pages/footer/Footer'
-import Profile from './pages/profile/profile';
+import Profile from './components/profile/profile';
 import { signin, signup } from './api/auth';
 
 function App() {

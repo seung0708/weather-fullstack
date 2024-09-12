@@ -42,7 +42,7 @@ const get5DayForecastData = async (city) => {
        // console.log('get5day', latLon)
         const response = await fetch (`${baseUrl}/data/2.5/forecast?lat=${latLon[0]}&lon=${latLon[1]}&appid=${apikey}&units=imperial`);
         const data = await response.json();
-        console.log(data)
+        //console.log(data)
         const groupedData = data.list.reduce((acc, item) => {
             const date = item.dt_txt.split(' ')[0];
             if(!acc[date]) {
@@ -67,7 +67,7 @@ const get5DayForecastData = async (city) => {
 const getCurrentConditionsData = async (city) => {
     try {
         const latLon = await getGeoLocations(city.city);
-        const response = await fetch(`${baseUrl}/data/2.5/weather?lat=${latLon[0]}&lon=${latLon[1]}&appid=${apikey}`)
+        const response = await fetch(`${baseUrl}/data/2.5/weather?lat=${latLon[0]}&lon=${latLon[1]}&appid=${apikey}&units=imperial`)
         const data = await response.json();
         console.log(data)
         if(data) {

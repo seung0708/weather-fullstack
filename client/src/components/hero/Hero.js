@@ -4,62 +4,80 @@ import './Hero.css'
  
 const Hero = () => {
   const[weather, setWeather] = useState([])
-  const [city, setCity] = useState('Los Angeles')
+  const [city, setCity] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [submittedCity, setSubmittedCity] = useState('Los Angeles');
+
+  const handleChange = e => {
+    setCity(e.target.value);
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault(); 
+    setSubmittedCity(city)
+  }
 
   useEffect(() => {
     async function fetchData() {
+      if(!submittedCity) return;
+
+      setLoading(true);
+
       try {
-        const data = await get5DayForecast(city);
+        const data = await get5DayForecast(submittedCity);
+        console.log(data)
         const dataArray = Object.entries(data).map(([date, data]) => ({date,...data}));
         setWeather(dataArray)
       } catch(error) {
         console.error(error)
+      } finally {
+        setLoading(false); 
       }
       
     }
     fetchData();
-  },[city])
+  },[submittedCity])
 
-  if(weather.length === 0) {
-    return <div>Loading weather data....</div>
-  }
-
-  return (
-    <section>
-      <div class="container">
-        <div class="row center-content">
-          <div class="column">
-        {console.log(weather)}
-        <div id="wrapper-bg" class="card" style={{backgroundImage: "url('https://mdbgo.io/ascensus/mdb-advanced/img/clear.gif')"}}>
-          <div class="card-header">
-            <div class="text-center">
-              <p class="heading" id="wrapper-name">Los Angeles</p>
-              <p id="wrapper-description">{weather[0].weather.description}</p>
-              <p class="temperature" id="wrapper-temp">{weather[0].main.temp}&deg;F</p>
-              <span>Pressure: <span id="wrapper-pressure">{weather[0].main.pressure}</span></span>
-              <span class="separator">|</span>
-              <span>Humidity: <span id="wrapper-humidity">{weather[0].main.humidity}</span></span>
-            </div>
-          </div>
-          {weather.map(item => (
-            <div class="card-body forecast-section">
-              <div class="row">
-                <div class="column-large">
-                  <strong>{item.date}</strong>
-                </div>  
-                <div class="column-large text-right">
-                  <span id="wrapper-forecast-temp-today">{item.main.temp}</span>
+    return (
+      
+      <section id='hero'>
+        <div className="container">
+          {(loading) ? <h2 style={{textAlign: 'center'}}>Loading weather data...</h2> : <></>}
+          <form onSubmit={handleSubmit}>
+            <input placeholder='Search' value={city} onChange={handleChange} />
+            <button type='submit'>Submit</button>
+          </form>
+          <div className="row center-content">
+            <div className="column">
+              <div id="wrapper-bg" className="card">
+                <div className="card-header">
+                  <div className="text-center">
+                    <p className="heading" id="wrapper-name">{submittedCity}</p>
+                     <p id="wrapper-description">{weather[0]?.weather?.description}</p> 
+                   <p className="temperature" id="wrapper-temp">{weather[0]?.main.temp}&deg;F</p>
+                    <span>Pressure: <span id="wrapper-pressure">{weather[0]?.main.pressure}</span></span>
+                    <span className="separator">|</span>
+                    <span>Humidity: <span id="wrapper-humidity">{weather[0]?.main.humidity}</span></span>
+                  </div>
                 </div>
+                {weather.map((item,i) => (
+                <div key={i} className="card-body forecast-section">
+                  <div className="row">
+                    <div className="column-large">
+                      <strong>{item.date}</strong>
+                    </div>  
+                    <div className="column-large text-right">
+                      <span id="wrapper-forecast-temp-today">{item.main.temp}</span>
+                    </div>
+                  </div>
+                </div>
+                ))}
+              </div>
             </div>
           </div>
-          ))}
-    
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-  )
+      </section>
+  )  
 }
 
 export default Hero

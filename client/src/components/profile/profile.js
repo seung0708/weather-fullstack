@@ -34,14 +34,13 @@ const Profile = ({user}) => {
     return <div>Loading weather data....</div>
   }
 
-  const {weather, main, wind} = weatherData; 
+  const {weather, main, name} = weatherData; 
 
   return (
-   <section style={{backgroundColor: '#f5f6f7;'}}>
+   <section>
     <div class="container">
       <div class="row center-content">
         <div class="column">
-        {console.log(weather, main, wind)}
           <div class="card">
             <div class="image-container">
               <img src="https://mdbgo.io/ascensus/mdb-advanced/img/clear.gif"
@@ -50,7 +49,7 @@ const Profile = ({user}) => {
             </div>
 
             <div class="card-img-overlay">
-              <h4 class="mb-0">Los Angeles, CA</h4>
+              <h4 class="mb-0">{name}</h4>
               <p class="display-2 my-3">{main.temp}</p>
               <p class="mb-2">Feels Like: <strong>{main.feels_like}</strong></p>
               <h5>{weather[0].main}</h5>
