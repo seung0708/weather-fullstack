@@ -38,20 +38,20 @@ const Profile = ({user}) => {
 
   return (
    <section>
-    <div class="container">
-      <div class="row center-content">
-        <div class="column">
-          <div class="card">
-            <div class="image-container">
+    <div className="container">
+      <div className="row center-content">
+        <div className="column">
+          <div className="card">
+            <div className="image-container">
               <img src="https://mdbgo.io/ascensus/mdb-advanced/img/clear.gif"
-                class="card-img" alt="weather" />
-              <div class="mask"></div>
+                className="card-img" alt="weather" />
+              <div className="mask"></div>
             </div>
 
-            <div class="card-img-overlay">
-              <h4 class="mb-0">{name}</h4>
-              <p class="display-2 my-3">{main.temp}</p>
-              <p class="mb-2">Feels Like: <strong>{main.feels_like}</strong></p>
+            <div className="card-img-overlay">
+              <h4 className="mb-0">{name}</h4>
+              <p className="display-2 my-3">{main.temp}</p>
+              <p className="mb-2">Feels Like: <strong>{main.feels_like}</strong></p>
               <h5>{weather[0].main}</h5>
             </div>
           </div>

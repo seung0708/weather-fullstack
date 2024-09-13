@@ -13,7 +13,6 @@ const store = new session.MemoryStore(); //in memory store
 
 // Import authentication middleware and configurations
 const passport = require('passport');
-const pool = require('./database');
 const initializePassport = require('./passport-config');
 const cors = require('cors');
 
@@ -36,10 +35,10 @@ app.use(cors()); // Enable Cross-Origin Resource Sharing
 // Configure session management
 app.use(session({
   store,
-  secret: 'your_secret', // Secret for signing session ID cookie
+  secret: process.env.SECRET_KEY, // Secret for signing session ID cookie
   resave: false, // Do not save session if unmodified
   saveUninitialized: false, // Do not save uninitialized sessions
-  cookie: { secure: false, httpOnly: true, maxAge: 1000 * 60 * 60 * 24 } // Cookie settings
+  cookie: { secure: true, maxAge: 1000 * 60 * 60 * 24 } // Cookie settings
 }));
 
 // Initialize and use Passport for authentication

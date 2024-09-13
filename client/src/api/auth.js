@@ -14,13 +14,9 @@ export const signin = async(email, password) => {
         })
         const result = await response.json();
         console.log(result)
-        if(!response.ok) {
-            console.log(result.message || 'Signin failed');
-        } else {
-            console.log(result.message || 'Signin successful')
+        if(response.ok) {
             return result;
         }
-
     } catch(error) {
         console.error(error)
     }

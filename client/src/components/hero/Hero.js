@@ -25,7 +25,6 @@ const Hero = () => {
 
       try {
         const data = await get5DayForecast(submittedCity);
-        console.log(data)
         const dataArray = Object.entries(data).map(([date, data]) => ({date,...data}));
         setWeather(dataArray)
       } catch(error) {

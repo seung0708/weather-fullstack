@@ -23,6 +23,7 @@ function App() {
   const signinUser = async (email, password) => {
     try {
       const result = await signin(email, password);
+      console.log(result)
       if(result) {
         setUser(result);
         localStorage.setItem('user', JSON.stringify(result))
@@ -53,6 +54,7 @@ function App() {
 
   return (
     <>
+      
       <Header user={user} signoutUser={signoutUser} />
       <Routes>
         <Route path='/' element={<Home user={user} />} />
@@ -60,7 +62,7 @@ function App() {
         <Route 
           path='/signup' 
           element={
-            <SignUp signinUser={signinUser} />
+            <SignUp signupUser={signupUser} />
           } />
         <Route 
           path='/signin' 

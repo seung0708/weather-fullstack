@@ -6,7 +6,6 @@ import { NavLink } from 'react-router-dom';
 const Header = ({user, signoutUser}) => {
   return (
     <header className='header container'>
-
         <div className='logo'>
             <NavLink to='/'>LOGO</NavLink></div>
         <nav className='navbar'>

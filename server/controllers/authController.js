@@ -9,8 +9,7 @@ const signup = async (req, res) => {
     if(user) {
       res.status(201).json({ 
         message: 'User registered', 
-        user: user.rows[0],
-        redirectUrl: '/profile'
+        user: user.rows[0]
       });
     }
   } catch (err) {
@@ -21,9 +20,8 @@ const signup = async (req, res) => {
 
 // Log in a user
 const signin = (req, res, next) => {
-  console.log(req.body);
   passport.authenticate('local', (err, user, info) => {
-    console.log(info)
+    console.log(user)
     if (err) return next(err);
     if (!user) return res.status(401).json({ message: 'Login failed' });
   
@@ -45,8 +43,5 @@ const signout = (req, res) => {
   });
 };
 
-const profile = (req, res) => {
-  
-}
 
 module.exports = { signup, signin, signout };
