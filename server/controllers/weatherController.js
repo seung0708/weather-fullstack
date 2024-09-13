@@ -25,6 +25,7 @@ const getCurrentWeather = async(req, res) => {
 }
 
 const getGeoLocations = async(city) => {
+
     try {
         const response = await fetch(`${baseUrl}/geo/1.0/direct?q=${city}&limit=5&appid=${apikey}`);
         const data = await response.json();

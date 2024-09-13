@@ -13,7 +13,7 @@ export const signin = async(email, password) => {
             }
         })
         const result = await response.json();
-        console.log(result)
+        
         if(response.ok) {
             return result;
         }
@@ -23,6 +23,7 @@ export const signin = async(email, password) => {
 }
 
 export const signup = async(email, password, city) => {
+    debugger;
     try {
         const response = await fetch(`${API_ENDPOINT}/auth/signup`, {
             method: 'POST',
@@ -35,15 +36,12 @@ export const signup = async(email, password, city) => {
                 'Content-Type': 'application/json'
             }
         })
-        console.log(response)
+        //console.log(response)
         const result = await response.json();
-        if(!response.ok) {
-            console.log(result.message || 'Sign up failed');
-        } else {
-            console.log(result.message || 'Sign up successful')
+        console.log(result)
+        if (result) {
             return result;
         }
-        console.log(result)
     } catch(err) {
         console.log(err)
     }

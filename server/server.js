@@ -11,9 +11,6 @@ const bodyParser = require('body-parser');
 const session = require('express-session');
 const store = new session.MemoryStore(); //in memory store
 
-// Import authentication middleware and configurations
-const passport = require('passport');
-const initializePassport = require('./passport-config');
 const cors = require('cors');
 
 // Import route handlers
@@ -41,10 +38,7 @@ app.use(session({
   cookie: { secure: true, maxAge: 1000 * 60 * 60 * 24 } // Cookie settings
 }));
 
-// Initialize and use Passport for authentication
-initializePassport(passport);
-app.use(passport.initialize());
-app.use(passport.session());
+
 
 // Define routes
 app.use('/users', userRoutes);

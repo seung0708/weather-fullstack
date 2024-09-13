@@ -13,7 +13,7 @@ const Header = ({user, signoutUser}) => {
             {user ? 
               (
                 <>
-                  <li><NavLink to={`/users/${user.user.id}`}>Dashboard</NavLink></li>
+                  <li><NavLink to={`/users/${console.log(user)}`}>Dashboard</NavLink></li>
                   <li><NavLink to='/' onClick={() => signoutUser()}>Sign out</NavLink></li>
                 </>
               ) : (

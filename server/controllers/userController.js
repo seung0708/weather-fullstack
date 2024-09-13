@@ -8,7 +8,7 @@ const showUserProfile = async (req, res) => {
     return res.status(404).json({ error: 'User not found' });
   }
   const weatherData = await getCurrentWeather(user.rows[0].city);
-    console.log('showUser', weatherData)
+  console.log('showUser', weatherData)
   try {
     const user = await findUserById(userId);
 

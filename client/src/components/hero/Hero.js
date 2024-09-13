@@ -14,6 +14,7 @@ const Hero = () => {
 
   const handleSubmit = e => {
     e.preventDefault(); 
+    if(!city) return;
     setSubmittedCity(city)
   }
 

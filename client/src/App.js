@@ -23,7 +23,6 @@ function App() {
   const signinUser = async (email, password) => {
     try {
       const result = await signin(email, password);
-      console.log(result)
       if(result) {
         setUser(result);
         localStorage.setItem('user', JSON.stringify(result))
@@ -38,9 +37,7 @@ function App() {
     try {
       const result = await signup(email, password, city)
       if(result) {
-        setUser(result);
-        localStorage.setItem('user', JSON.stringify(result))
-        navigate(`/users/${result.user.id}`)
+        navigate(`/signin`)
       }
     } catch(error) {
       console.error(error);
@@ -54,7 +51,6 @@ function App() {
 
   return (
     <>
-      
       <Header user={user} signoutUser={signoutUser} />
       <Routes>
         <Route path='/' element={<Home user={user} />} />

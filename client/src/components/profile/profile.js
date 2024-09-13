@@ -5,6 +5,7 @@ import { getUserById } from '../../api/users';
 
 const Profile = ({user}) => {
   const [weatherData, setWeather] = useState(null);
+  const [loading, setLoading] = useState(true);
   let signedInUser
   if(user) {
     signedInUser = user.user;
@@ -25,13 +26,16 @@ const Profile = ({user}) => {
         } catch (error) {
             console.log(error)
         }
+        finally {
+          setLoading(false)
+        }
       };
       fetchData();
     }
   },[signedInUser])
   
-  if(!weatherData) {
-    return <div>Loading weather data....</div>
+  if(loading) {
+    return <div style={{textAlign: 'center'}}>Loading weather data....</div>
   }
 
   const {weather, main, name} = weatherData; 
